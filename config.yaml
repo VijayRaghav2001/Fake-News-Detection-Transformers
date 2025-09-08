@@ -1,0 +1,42 @@
+# Model configuration
+model:
+  name: "bert-base-uncased"
+  num_labels: 2
+  dropout_rate: 0.3
+
+# Training configuration
+training:
+  batch_size: 16
+  epochs: 5
+  learning_rate: 2e-5
+  max_seq_length: 256
+  warmup_steps: 100
+  weight_decay: 0.01
+  evaluation_strategy: "epoch"
+  save_strategy: "epoch"
+  logging_dir: "./logs"
+  output_dir: "./models/saved_models"
+  seed: 42
+  gradient_accumulation_steps: 2
+  max_grad_norm: 1.0
+  load_best_model_at_end: true
+  metric_for_best_model: "accuracy"
+  greater_is_better: true
+
+# Data configuration
+data:
+  train_path: "data/raw/train.csv"
+  val_path: "data/raw/val.csv"
+  test_path: "data/raw/test.csv"
+  text_column: "text"
+  label_column: "label"
+
+# Paths
+paths:
+  saved_models: "models/saved_models"
+  checkpoints: "models/model_checkpoints"
+  processed_data: "data/processed"
+
+# Tokenizer configuration
+tokenizer:
+  do_lower_case: true
